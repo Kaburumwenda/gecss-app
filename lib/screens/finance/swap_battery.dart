@@ -50,9 +50,29 @@ class _SwapbatteryScreenState extends State<SwapbatteryScreen> {
             key: _form,
             child: Column(children: [
             Image.asset('assets/images/mpesa.png', width: 200,),
-            const Text('Pay battery swap charges of KES 300 with mpesa', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+            const Text('Pay battery swap charges with Safaricom Mpesa', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
             const SizedBox(height: 10,),
             const Text('Please enter valid mpesa number', style: TextStyle(color: Colors.blue),),
+            const SizedBox(height: 20,),
+
+             TextFormField(
+              validator: (v) {
+                if (v!.isEmpty) {
+                  return 'Enter amount';
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                fillColor: Colors.brown[200],
+                filled: true,
+                hintText: "Amount i.e. 500",
+                labelText: 'Amount i.e. 500'
+              ),
+              onSaved: (v) {
+                _phone = v!;
+              },
+            ),
             const SizedBox(height: 20,),
 
             TextFormField(

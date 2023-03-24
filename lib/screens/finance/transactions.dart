@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:mobile/Animation/FadeAnimation.dart';
+import 'package:mobile/endpoints/endpoint.dart';
 import 'package:mobile/models/models.dart';
 import 'package:mobile/screens/screens.dart';
 
@@ -31,7 +32,8 @@ class _TransactionScreenState extends State<TransactionScreen> {
   _getFinance() async {
      var token = storage.getItem('token');
     _data = [];
-    String url = 'http://192.168.1.9/v1/user/transaction';
+    var baseur = AdsType.baseurl;
+    String url = '$baseur/v1/user/transaction';
     List resp = json.decode((await client.get(Uri.parse(url), headers: {'Authorization': "token $token"} )).body);
      resp.forEach((element) {
       _data.add(Transaction.fromJson(element));
@@ -81,9 +83,9 @@ class _TransactionScreenState extends State<TransactionScreen> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: (){
-                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) =>const DepositScreen(),
-                    ));
+                    //  Navigator.of(context).push(MaterialPageRoute(
+                    //   builder: (BuildContext context) =>const DepositScreen(),
+                    // ));
                   }, 
                   child: const Text('Deposit', style: TextStyle(fontSize: 16),),
                   style: ElevatedButton.styleFrom(

@@ -4,8 +4,8 @@ import 'package:localstorage/localstorage.dart';
 import 'package:mobile/Animation/FadeAnimation.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
+import 'package:mobile/endpoints/endpoint.dart';
 import 'package:mobile/models/models.dart';
-import 'package:mobile/screens/auth/welcome.dart';
 import 'package:mobile/screens/screens.dart';
 
 class UserProfile extends StatefulWidget {
@@ -18,7 +18,7 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
   LocalStorage storage = LocalStorage('usertoken');
    Client client = http.Client();
-  List<UserAccount> _data = [];
+  List<AccountDetails> _data = [];
   bool _isLoading = true;
   
     @override
@@ -30,10 +30,11 @@ class _UserProfileState extends State<UserProfile> {
   _getAccountDetails() async {
     var token = storage.getItem('token');
     _data = [];
-    String url = 'http://192.168.1.9/v1/user/account';
+    var baseur = AdsType.baseurl;
+    String url = '$baseur/v1/user/account';
     List resp = json.decode((await client.get(Uri.parse(url), headers: {'Authorization': "token $token"} )).body);
      resp.forEach((element) {
-      _data.add(UserAccount.fromJson(element));
+      _data.add(AccountDetails.fromJson(element));
     });
     setState(() {
        _isLoading = false;
@@ -91,14 +92,7 @@ class _UserProfileState extends State<UserProfile> {
              ),
              Text(_data[0].client.toString(), style:const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black54),),
              Text('Member No: ' + _data[0].memNo.toString()),
-            //  RichText(
-            //       text: TextSpan(
-            //         children:<TextSpan>[
-            //           const TextSpan(text: 'Account Status: ', style: TextStyle(color:Colors.black54, fontSize: 16)),
-            //           TextSpan(text: _data[0].st, style: const TextStyle( color:Colors.green, fontSize: 14, fontWeight: FontWeight.bold)),
-            //         ],
-            //       ),
-            //     ),
+             
              ],
           ),),
           const SizedBox(height: 20,),
@@ -138,9 +132,9 @@ class _UserProfileState extends State<UserProfile> {
           
           GestureDetector(
             onTap: (){
-             Navigator.of(context).push(MaterialPageRoute(
-               builder: (BuildContext context) =>const DepositScreen(),
-             ));
+            //  Navigator.of(context).push(MaterialPageRoute(
+            //    builder: (BuildContext context) =>const DepositScreen(),
+            //  ));
             },
             child: Column(
             children: [
@@ -238,7 +232,7 @@ class _UserProfileState extends State<UserProfile> {
        
       ],),)
 
-      ],): const Center(child: Text('Our team is working in your account. it may take upto 24 hours. use other services'),)
+      ],) : const SizedBox.shrink()
         ),
       )
     );

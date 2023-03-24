@@ -1,6 +1,8 @@
-class UserAccount {
+class AccountDetails {
+  int? id;
   String? client;
   String? memNo;
+  int? bikes;
   String? idNo;
   String? phone;
   String? altPhone;
@@ -9,14 +11,16 @@ class UserAccount {
   String? occupation;
   String? residential;
   String? operationArea;
-  String? amount;
-  String? balance;
+  int? amount;
+  int? balance;
   String? createdAt;
   String? updatedAt;
 
-  UserAccount(
-      {this.client,
+  AccountDetails(
+      {this.id,
+      this.client,
       this.memNo,
+      this.bikes,
       this.idNo,
       this.phone,
       this.altPhone,
@@ -30,9 +34,11 @@ class UserAccount {
       this.createdAt,
       this.updatedAt});
 
-  UserAccount.fromJson(Map<String, dynamic> json) {
+  AccountDetails.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     client = json['client'];
     memNo = json['memNo'];
+    bikes = json['bikes'];
     idNo = json['idNo'];
     phone = json['phone'];
     altPhone = json['alt_phone'];
@@ -49,8 +55,10 @@ class UserAccount {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
     data['client'] = this.client;
     data['memNo'] = this.memNo;
+    data['bikes'] = this.bikes;
     data['idNo'] = this.idNo;
     data['phone'] = this.phone;
     data['alt_phone'] = this.altPhone;

@@ -14,8 +14,13 @@ export './home/battery_station.dart';
 
 // FINANCE
 export './finance/transactions.dart';
-export './finance/deposit_pay.dart';
 export './finance/swap_battery.dart';
 
 // IAM
 export './iam/profile.dart';
+
+// BATTERY
+export './battery/console.dart';
+export './battery/assign_battery.dart';
+export './battery/battery_charged.dart';
+export './battery/charging_battery.dart';

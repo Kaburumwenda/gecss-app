@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mobile/Animation/FadeAnimation.dart';
+import 'package:mobile/endpoints/endpoint.dart';
 import 'package:mobile/models/models.dart';
 
 class BatteryStations extends StatefulWidget {
@@ -26,7 +27,8 @@ class _BatteryStationsState extends State<BatteryStations> {
 
   _getNotifications() async {
     _data = [];
-    String url = 'http://192.168.1.9/v1/battery_stations';
+    var baseur = AdsType.baseurl;
+    String url = '$baseur/v1/battery_stations';
     List resp = json.decode((await client.get(Uri.parse(url) )).body);
      resp.forEach((element) {
       _data.add(BatteryStation.fromJson(element));

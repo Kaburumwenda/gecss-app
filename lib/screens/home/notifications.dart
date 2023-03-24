@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:mobile/Animation/FadeAnimation.dart';
+import 'package:mobile/endpoints/endpoint.dart';
 import 'package:mobile/models/models.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -26,7 +27,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   _getNotifications() async {
     _data = [];
-    String url = 'http://192.168.1.9/v1/notifications';
+    var baseur = AdsType.baseurl;
+    String url = '$baseur/v1/notifications';
     List resp = json.decode((await client.get(Uri.parse(url) )).body);
      resp.forEach((element) {
       _data.add(Notifications.fromJson(element));

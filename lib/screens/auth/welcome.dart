@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 20,),
             Center(child: Image.asset('assets/images/launcher.png', width: 60,),),
-            const Text('GECSS'),
+            const Text('GECSS OPERATIONS'),
             Lottie.asset('assets/lottie/bike.json'), 
             const SizedBox(height: 20,),
 
@@ -34,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                    const  Padding(
                     padding:EdgeInsets.only(left: 20),
-                    child: Text('GECSS - The Future of Motor Vehicles'),
+                    child: Text('GECSS - We are the Future'),
                     ),
                   const SizedBox(height: 40,),
 

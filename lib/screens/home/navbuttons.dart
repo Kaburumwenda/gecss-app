@@ -21,7 +21,7 @@ class NavButtonScreen extends StatelessWidget {
         GestureDetector(
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) => const DepositScreen(),
+              builder: (BuildContext context) => const BatteryConsole(),
               ));
           },
           child: Column(
@@ -34,18 +34,18 @@ class NavButtonScreen extends StatelessWidget {
             ),
             child: const CircleAvatar(
               radius: 20.0,
-              child: Icon(Icons.monetization_on_outlined , size: 30, color: Colors.blue, ),
+              child: Icon(Icons.ev_station_outlined , size: 30, color: Colors.blue, ),
               backgroundColor: Colors.transparent,
             ),
           ),
-          const Text('Daily'),
-          const Text('Deposit')
+          const SizedBox(height: 5,),
+          const Text('Batteries'),
         ],),),
 
         GestureDetector(
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) =>const SwapbatteryScreen(),
+              builder: (BuildContext context) =>const BatteryAssign(),
             ));
           },
           child: Column(
@@ -62,14 +62,14 @@ class NavButtonScreen extends StatelessWidget {
               backgroundColor: Colors.transparent,
             ),
           ),
-          const Text('Swap'),
-          const Text('Battery')
+          const Text('Assign'),
+          const Text('Batteries')
         ],),),
 
         GestureDetector(
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) =>const TransactionScreen(),
+              builder: (BuildContext context) =>const BatteryCharging(),
             ));
           },
           child: Column(
@@ -86,14 +86,14 @@ class NavButtonScreen extends StatelessWidget {
               backgroundColor: Colors.transparent,
             ),
           ),
-          const Text('Account'),
-          const Text('History')
+          const Text('Charging'),
+          const Text('battery')
         ],),),
 
         GestureDetector(
           onTap: (){
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) =>const BatteryStations(),
+              builder: (BuildContext context) =>const BatteryCharged(),
             ));
           },
           child: Column(
@@ -110,8 +110,8 @@ class NavButtonScreen extends StatelessWidget {
               backgroundColor: Colors.transparent,
             ),
           ),
-          const Text('Battery'),
-          const Text('Station')
+          const Text('Charged'),
+          const Text('Battery')
         ],),),
        
       ],)),

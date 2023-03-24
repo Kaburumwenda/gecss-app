@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/screens/screens.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({ Key? key }) : super(key: key);
@@ -12,9 +13,9 @@ class _HomeScreenState extends State<HomeScreen> {
    int index = 0;
     final screens = [
       const DashboardScreen(),
-      const TransactionScreen(),
-      const SwapbatteryScreen(),
-      const UserProfile(),
+      const BatteryConsole(),
+      const BatteryAssign(),
+      const BatteryCharged(),
     ];
   @override
   Widget build(BuildContext context) {
@@ -43,22 +44,40 @@ class _HomeScreenState extends State<HomeScreen> {
           label: 'Home'
           ),
         NavigationDestination(
-          icon: Icon(Icons.auto_graph_outlined , size: 30, color: Colors.grey[400],), 
-          selectedIcon:const Icon(Icons.auto_graph_outlined , size: 30, color: Colors.green,),
-          label: 'Transactions'
+          icon: Icon(Icons.ev_station_outlined , size: 30, color: Colors.grey[400],), 
+          selectedIcon:const Icon(Icons.ev_station_outlined , size: 30, color: Colors.green,),
+          label: 'Batteries'
           ),
         NavigationDestination(
-          icon: Icon(Icons.battery_alert_rounded , size: 30, color: Colors.grey[400], ), 
+          icon: Icon(Icons.battery_alert_outlined , size: 30, color: Colors.grey[400], ), 
           selectedIcon: const Icon(Icons.battery_alert_outlined , size: 30, color: Colors.green, ),
-          label: 'Battery'
+          label: 'Assign'
           ),
         NavigationDestination(
-          icon: Icon(Icons.person, size: 30, color: Colors.grey[400],  ), 
-          selectedIcon: const Icon(Icons.person, size: 30,  color: Colors.green, ),
-          label: 'Profile'
+          icon: Icon(Icons.charging_station_outlined, size: 30, color: Colors.grey[400],  ), 
+          selectedIcon: const Icon(Icons.charging_station_outlined, size: 30,  color: Colors.green, ),
+          label: 'Charged'
           ),
       ]),
         ),
+
+      floatingActionButton: FloatingActionButton(
+      onPressed: () async {
+         final Uri launchUri = Uri(
+            scheme: 'tel',
+              path: '+254114166024'
+            );
+            if ( await canLaunch(launchUri.toString())) {
+              await launch(launchUri.toString());
+            } else{
+              // ignore: avoid_print
+              print(" the action is not supported. (No phone app)");
+            }
+      },
+      child:const Icon(Icons.call ),
+      backgroundColor: Colors.blue,
+    ),
+
     );
   }
 }

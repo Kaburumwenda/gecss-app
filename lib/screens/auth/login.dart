@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:art_sweetalert/art_sweetalert.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:mobile/Animation/FadeAnimation.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile/endpoints/endpoint.dart';
 import 'package:mobile/screens/home/home_screen.dart';
 import 'package:progress_dialog_null_safe/progress_dialog_null_safe.dart';
 
@@ -34,7 +36,8 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     _form.currentState!.save();
     await pr.show();
-    String url = 'http://192.168.1.9/v1/auth/login';
+    var baseur = AdsType.baseurl;
+    String url = '$baseur/v1/auth/login';
 
       http.Response response = await http.post(Uri.parse(url),
           headers: {
@@ -90,23 +93,28 @@ class _LoginScreenState extends State<LoginScreen> {
       
                   Column(children: [
                     Image.asset('assets/images/launcher.png', width: 60,),
-                    const Text('GECSS')
+                    const Text('GECSS OPERATIONS')
                   ]),
 
                    const SizedBox(height: 40,),
                    TextFormField(
                     validator: (v) {
                       if (v!.isEmpty) {
-                        return 'Enter Your member number';
+                        return 'Enter Your Account number';
                       }
                       return null;
                     },
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                          RegExp("[0-9]")),
+                    ],
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       fillColor: Colors.brown[100],
                       filled: true,
-                      hintText: "Member number",
-                      labelText: 'Member number'
+                      hintText: "Account number",
+                      labelText: 'Account number'
                     ),
                     onSaved: (v) {
                       _username = v!;
